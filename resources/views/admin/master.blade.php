@@ -139,8 +139,8 @@
                     <details class="dropdown">
                         <summary class="btn m-1">Order Module</summary>
                         <ul class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 px-6 shadow-sm">
-                            <li class="py-3"><a href="{{route('category.create')}}">Add Order</a></li>
-                            <li ><a>Manage Order</a></li>
+                            <li class="py-3"><a href="{{route('order.manage')}}">Manage Order</a></li>
+
                         </ul>
                     </details>
                 </li>

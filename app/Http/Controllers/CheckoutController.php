@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use Illuminate\Http\Request;
 use Session;
 
@@ -53,4 +55,17 @@ class CheckoutController extends Controller
 
         return view('website.checkout.billing-info');
     }
+
+    public function newOrder(Request $request)
+    {
+        $this->orderId = Order::newOrder($request);
+        OrderDetail::newOrderDetail($this->orderId);
+        return redirect('/checkout/complete-order')->with('message', 'Your order has been placed. We will contact you soon');
+    }
+
+    public function completeOrder()
+    {
+        return view('website.checkout.complete-order');
+    }
+
 }

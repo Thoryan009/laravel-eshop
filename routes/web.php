@@ -12,6 +12,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminOrderController;
 
 
 
@@ -28,6 +29,8 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 Route::post('/checkout/new-customer', [CheckoutController::class, 'newCustomer'])->name('checkout.new-customer');
 Route::post('/checkout/login-customer', [CheckoutController::class, 'loginCustomer'])->name('checkout.login-customer');
 Route::get('/checkout/billing-info', [CheckoutController::class, 'billingInfo'])->name('checkout.billing-info');
+Route::post('/checkout/new-order', [CheckoutController::class, 'newOrder'])->name('checkout.new-order');
+Route::get('/checkout/complete-order', [CheckoutController::class, 'completeOrder'])->name('checkout.complete-order');
 
 Route::get('/customer/register/page', [CustomerAuthController::class, 'registerPage'])->name('customer.checkout.billing-info');
 Route::get('/customer/register', [CustomerAuthController::class, 'registerAccount'])->name('customer.register');
@@ -57,4 +60,10 @@ Route::middleware([
     Route::resource('product', ProductController::class);
 
     Route::get('/getSubCategories', [ProductController::class, 'sendSubcategories'])->name('getSubCategories');
+
+    Route::get('/admin/order/manage', [AdminOrderController::class, 'manage'])->name('order.manage');
+    Route::get('/admin/order/detail/{id}', [AdminOrderController::class, 'detail'])->name('order.detail');
+
+
+
 });

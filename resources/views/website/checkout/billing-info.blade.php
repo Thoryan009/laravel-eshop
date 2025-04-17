@@ -28,12 +28,13 @@
                         <h2>Make Your Checkout Here</h2>
                         <p>Please register in order to checkout more quickly</p>
                         <!-- Form -->
-                        <form class="form" method="post" action="#">
+                        <form class="form" method="post" action="{{route('checkout.new-order')}}">
+                            @csrf
                            <div class="row">
                                <div class=" col-12">
                                    <div class="form-group">
                                        <label>Delivery Address<span>*</span></label>
-                                       <input type="text" name="name" placeholder="Enter your Delivery Addess" required="required">
+                                       <input type="text" name="delivery_address" placeholder="Enter your Delivery Addess" required="required">
                                    </div>
                                </div>
                            </div>
@@ -42,9 +43,9 @@
                                 <h2>Payments</h2>
                                 <div class="content">
                                     <div class="checkbox">
-                                        <label class="checkbox-inline" for="1"><input name="updates" id="1" type="checkbox"> Check Payments</label>
-                                        <label class="checkbox-inline" for="2"><input name="news" id="2" type="checkbox"> Cash On Delivery</label>
-                                        <label class="checkbox-inline" for="3"><input name="news" id="3" type="checkbox"> PayPal</label>
+
+                                        <label class="checkbox-inline" for="2"><input name="payment_method" id="2" value="cash" type="checkbox"> Cash On Delivery</label>
+                                        <label class="checkbox-inline" for="3"><input name="payment_method" id="3" value="paypal" type="checkbox"> PayPal</label>
                                     </div>
                                 </div>
                             </div>
@@ -54,11 +55,16 @@
                         <!--/ End Form -->
                     </div>
                 </div>
+
                 <div class="col-lg-6 col-12">
                     <div class="order-details">
                         <!-- Order Widget -->
+                        <p class="text-center">total: {{Cart::total()}}</p>
+                        <p class="text-center">tax: {{Cart::tax()}}</p>
+                        <p class="text-center">subtotal: {{Cart::subtotal()}}</p>
                         <div class="single-widget">
                             <h2>CART  TOTALS</h2>
+
                             <div class="content">
                                 <ul>
                                     @php($sum = 0)
@@ -80,7 +86,11 @@
                             </div>
                         </div>
                         <!--/ End Order Widget -->
-
+                            <?php
+                            Session::put('order_total', $totalPayable);
+                            Session::put('tax_total', $tax);
+                            Session::put('shipping_total', $shipping);
+                            ?>
                         <!-- Payment Method Widget -->
                         <div class="single-widget payement">
                             <div class="content">
@@ -92,13 +102,15 @@
                         <div class="single-widget get-button">
                             <div class="content">
                                 <div class="button">
-                                    <a href="#" class="btn">proceed to checkout</a>
+                                    <button type="submit" class="btn">proceed to checkout</button>
                                 </div>
                             </div>
                         </div>
                         <!--/ End Button Widget -->
                     </div>
                 </div>
+
+
             </div>
         </div>
     </section>
