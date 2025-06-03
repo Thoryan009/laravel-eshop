@@ -52,7 +52,6 @@ class CheckoutController extends Controller
 
     public function billingInfo(Request $request)
     {
-
         return view('website.checkout.billing-info');
     }
 

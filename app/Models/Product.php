@@ -120,6 +120,13 @@ class Product extends Model
         self::$product->save();
     }
 
+    public static function salesIncreament($id)
+    {
+        self::$product = Product::find($id);
+        self::$product->sales_count += 1; 
+        self::$product->save();
+    }
+
 
 
 

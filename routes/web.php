@@ -13,6 +13,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminCustomerController;
 
 
 
@@ -22,6 +23,7 @@ Route::get('/product-detail/{id}', [DetailController::class, 'index'])->name('pr
 
 Route::get('/product-cart', [CartController::class, 'index'])->name('product.cart');
 Route::post('/add-to-cart/{id}', [CartController::class, 'addToCart'])->name('cart.add');
+Route::get('/direct/add/to/cart/{id}', [CartController::class, 'directAddToCart'])->name('direct.add.to.cart');
 Route::get('/remove-cart/{rowId}', [CartController::class, 'removeCart'])->name('cart.remove');
 Route::post('/update-cart/', [CartController::class, 'updateCart'])->name('cart.update');
 
@@ -32,18 +34,25 @@ Route::get('/checkout/billing-info', [CheckoutController::class, 'billingInfo'])
 Route::post('/checkout/new-order', [CheckoutController::class, 'newOrder'])->name('checkout.new-order');
 Route::get('/checkout/complete-order', [CheckoutController::class, 'completeOrder'])->name('checkout.complete-order');
 
-Route::get('/customer/register/page', [CustomerAuthController::class, 'registerPage'])->name('customer.checkout.billing-info');
+Route::get('/customer/register/page2', [CustomerAuthController::class, 'registerPage'])->name('customer.registerPage');
+Route::post('/customer/newCustomerFromRegisterPage', [CustomerAuthController::class, 'newCustomerFromRegisterPage'])->name('customer.newCustomerFromRegisterPage');
+Route::get('/customer/register/page', [CustomerAuthController::class, 'loginRegisterPage'])->name('customer.checkout.billing-info');
 Route::get('/customer/register', [CustomerAuthController::class, 'registerAccount'])->name('customer.register');
 Route::get('/customer/login/page', [CustomerAuthController::class, 'loginPage'])->name('customer.login.page');
 Route::post('/customer/login', [CustomerAuthController::class, 'loginAccount'])->name('customer.login');
 Route::get('/customer/logout', [CustomerAuthController::class, 'logout'])->name('customer.logout');
 //Route::get('/customer-register', [CustomerAuthController::class, 'registerPage'])->name('customer.register');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
+// customer panel routes
+Route::middleware(['customer'])->group(function (){
+    Route::get('/customer-dashboard', [CustomerAuthController::class, 'customerDashboard'])->name('customer.dashboard');
+    Route::get('/customer-profile', [CustomerAuthController::class, 'customerProfile'])->name('customer.profile');
+});
+
+
+
+
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/category-create', [CategoryController::class, 'index'])->name('category.create');
@@ -63,6 +72,8 @@ Route::middleware([
 
     Route::get('/admin/order/manage', [AdminOrderController::class, 'manage'])->name('order.manage');
     Route::get('/admin/order/detail/{id}', [AdminOrderController::class, 'detail'])->name('order.detail');
+
+    Route::get('/admin/customer/manage', [AdminCustomerController::class, 'index'])->name('customer.manage');
 
 
 

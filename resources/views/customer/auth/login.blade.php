@@ -48,7 +48,7 @@
                                 <div class="col-12">
                                     <div class="form-group login-btn">
                                         <button class="btn" type="submit">Login</button>
-                                        <a href="{{route('customer.register')}}" class="btn">Register</a>
+                                        <a href="{{route('customer.registerPage')}}" class="btn">Register</a>
 
 
                                     </div>
