@@ -150,7 +150,7 @@
                         <summary class="btn m-1">Customer Module</summary>
                         <ul class="menu dropdown-content bg-base-100 rounded-box z-1 w-52 px-6 shadow-sm">
                             <li class="py-3"><a href="{{route('category.create')}}">Add Customer</a></li>
-                            <li ><a>Manage Customer</a></li>
+                            <li ><a href="{{route('customer.manage')}}">Manage Customer</a></li>
                         </ul>
                     </details>
                 </li>

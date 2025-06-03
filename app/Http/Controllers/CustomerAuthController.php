@@ -24,7 +24,7 @@ class CustomerAuthController extends Controller
             {
                 Session::put('id', $this->customer->id);
                 Session::put('name', $this->customer->name);
-                return redirect('/');
+                return redirect('/customer-dashboard');
 
             }
             else
@@ -38,13 +38,28 @@ class CustomerAuthController extends Controller
         }
     }
 
-    public function registerPage()
+    public function loginRegisterPage()
     {
         if (Session::get('id'))
         {
             return redirect('/checkout/billing-info');
         }
+        return view('customer.auth.login-register');
+    }
+
+    public function registerPage()
+    {
         return view('customer.auth.register');
+    }
+
+        public function newCustomerFromRegisterPage(Request $request)
+    {
+        $this->customer =  Customer::newCustomer($request);
+
+        Session::put('id', $this->customer->id);
+        Session::put('name', $this->customer->name);
+
+        return redirect('/');
     }
 
     public function registerAccount(Request $request)
@@ -55,6 +70,15 @@ class CustomerAuthController extends Controller
         Session::put('name', $this->customer->name);
 
         return redirect('/customer/dashboard');
+    }
+
+    public function customerDashboard()
+    {
+        return view('customer.auth.dashboard');
+    }
+    public function customerProfile()
+    {
+        return view('customer.auth.profile');
     }
 
 

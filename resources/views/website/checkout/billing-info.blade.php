@@ -23,6 +23,7 @@
     <section class="shop checkout section">
         <div class="container">
             <div class="row">
+             
                 <div class="col-lg-6 col-12">
                     <div class="checkout-form">
                         <h2>Make Your Checkout Here</h2>
@@ -42,15 +43,16 @@
                             <div class="single-widget">
                                 <h2>Payments</h2>
                                 <div class="content">
-                                    <div class="checkbox">
+                                    <div class="d-flex flex-col ml-4">
 
-                                        <label class="checkbox-inline" for="2"><input name="payment_method" id="2" value="cash" type="checkbox"> Cash On Delivery</label>
-                                        <label class="checkbox-inline" for="3"><input name="payment_method" id="3" value="paypal" type="checkbox"> PayPal</label>
+                                        <label class="" ><input name="payment_method"  value="cash" type="radio"> Cash On Delivery</label>
+                                        <label class="" ><input name="payment_method"  value="paypal" type="radio"> PayPal</label>
+                                       
                                     </div>
                                 </div>
                             </div>
                             <!--/ End Order Widget -->
-                            <button class="btn" type="submit">   Submit</button>
+                            <button class="btn" type="submit">   proceed to checkout</button>
                         </form>
                         <!--/ End Form -->
                     </div>
@@ -94,7 +96,7 @@
                         <!-- Payment Method Widget -->
                         <div class="single-widget payement">
                             <div class="content">
-                                <img src="images/payment-method.png" alt="#">
+                                {{-- <img src="images/payment-method.png" alt="#"> --}}
                             </div>
                         </div>
                         <!--/ End Payment Method Widget -->
@@ -102,14 +104,14 @@
                         <div class="single-widget get-button">
                             <div class="content">
                                 <div class="button">
-                                    <button type="submit" class="btn">proceed to checkout</button>
+                                    {{-- <button type="submit" class="btn"></button> --}}
                                 </div>
                             </div>
                         </div>
                         <!--/ End Button Widget -->
                     </div>
                 </div>
-
+            
 
             </div>
         </div>
